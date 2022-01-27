@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SelectLogin">
+
+    <VideoView
+        android:id="@+id/backgroundVideo"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#31000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></VideoView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="8dp"
+        android:background="@drawable/roundedconers"
+        android:backgroundTint="#4F000000"
+        android:enabled="false"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.98">
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@color/orange"
+            android:enabled="false"
+            android:text="@string/action_sign_in"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/withGoogle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
+            android:background="@color/lightblue"
+            android:backgroundTintMode="add"
+            android:drawableStart="@drawable/common_google_signin_btn_icon_dark"
+            android:text="Google"
+            app:iconGravity="start"
+            app:iconPadding="0dp"
+            app:iconSize="35dp"
+            app:iconTintMode="src_in" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/LogoImage"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/roundedconers"
+        android:backgroundTint="#2A000000"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.18"
+        app:srcCompat="@drawable/logo2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
