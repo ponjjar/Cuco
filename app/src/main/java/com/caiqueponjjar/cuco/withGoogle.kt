@@ -133,9 +133,6 @@ class withGoogle : Fragment(com.caiqueponjjar.cuco.R.layout.activity_firstfragme
             bundle.putString("personGivenName",acct.givenName)
 
             //user email id
-            bundle.putString("personFamilyName",acct.familyName)
-
-            //user email id
             bundle.putString("personEmail",acct.email)
             //user unique id
             bundle.putString("personId",acct.id)

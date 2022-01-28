@@ -5,57 +5,134 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E16023"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".ui.login.LoginActivity">
 
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:hint="@string/prompt_email"
-        android:inputType="textEmailAddress"
-        android:selectAllOnFocus="true"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="@string/prompt_password"
-        android:imeActionLabel="@string/action_sign_in_short"
-        android:imeOptions="actionDone"
-        android:inputType="textPassword"
-        android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo2" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/Form"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="16dp"
-        android:enabled="false"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:orientation="vertical"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password">
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.16000003">
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/roundedconers"
+            android:backgroundTint="@color/white"
+            android:hint="@string/prompt_email"
+            android:inputType="textEmailAddress"
+            android:padding="8dp"
+            android:selectAllOnFocus="true" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/roundedconers"
+            android:backgroundTint="@color/white"
+            android:hint="@string/prompt_password"
+            android:imeActionLabel="@string/action_sign_in_short"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:selectAllOnFocus="true" />
 
         <Button
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:enabled="false"
-            android:text="@string/action_sign_in" />
+            android:layout_marginTop="16dp"
+            android:background="@drawable/roundedconers"
+            android:backgroundTint="#FFD29C"
+            android:enabled="true"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:text="Entrar" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/FormRegister2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.16000003">
+
+        <TextView
+            android:id="@+id/CucoHello"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:text="Prazer, sou o Cuco. "
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/Who"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:text="Como você se chama?"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/roundedconers"
+            android:backgroundTint="@color/white"
+            android:hint="Nome de usuário"
+            android:inputType="textEmailAddress"
+            android:padding="8dp"
+            android:selectAllOnFocus="true" />
+
+        <Button
+            android:id="@+id/Cadastrar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/roundedconers"
+            android:backgroundTint="#FFD29C"
+            android:enabled="true"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:text="Vamos nessa!" />
 
     </LinearLayout>
 

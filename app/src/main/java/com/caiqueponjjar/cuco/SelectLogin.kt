@@ -1,26 +1,18 @@
 package com.caiqueponjjar.cuco
 
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
-import android.widget.VideoView
-import com.caiqueponjjar.cuco.R.*
-import android.util.DisplayMetrics
-import android.widget.LinearLayout
-import android.app.Activity
 import android.content.Intent
 import android.media.MediaPlayer
-import android.view.View.getDefaultSize
-import java.security.AccessController.getContext
-import kotlin.math.roundToInt
-import android.view.View.getDefaultSize
-import android.widget.Button
-import android.R
-
+import android.net.Uri
+import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.VideoView
+import androidx.appcompat.app.AppCompatActivity
+import com.caiqueponjjar.cuco.R.*
 import com.caiqueponjjar.cuco.ui.login.LoginActivity
 
 
@@ -45,15 +37,6 @@ class SelectLogin : AppCompatActivity() {
             val mVideoHeight = 720
 
             val mVideoWidth = 1280
-            var width = metrics.widthPixels
-            var height = metrics.heightPixels
-                if (mVideoWidth * height > width * mVideoHeight) {
-                    // Log.i("@@@", "image too tall, correcting");
-                    height = width * mVideoHeight / mVideoWidth
-                } else {
-                    // Log.i("@@@", "image too wide, correcting");
-                    width = height * (mVideoWidth / mVideoHeight)
-                }
 
             mp.setLooping(true)
             mp.setVolume(0.0F ,0.0F)

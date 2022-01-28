@@ -35,13 +35,14 @@
 
         <Button
             android:id="@+id/login"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:layout_marginRight="4dp"
             android:layout_weight="1"
             android:background="@color/orange"
-            android:enabled="false"
+            android:enabled="true"
             android:text="@string/action_sign_in"
             android:textColor="@color/white" />
 
@@ -53,8 +54,7 @@
             android:layout_weight="1"
             android:background="@color/lightblue"
             android:backgroundTintMode="add"
-            android:drawableStart="@drawable/common_google_signin_btn_icon_dark"
-            android:text="Google"
+            android:text="Entrar com Google"
             app:iconGravity="start"
             app:iconPadding="0dp"
             app:iconSize="35dp"

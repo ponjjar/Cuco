@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/activity_firstfragment.xml" value="0.264" />
+        <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/activity_listitem.xml" value="0.264" />
+        <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/activity_main.xml" value="0.15364583333333334" />
+        <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/activity_select_login.xml" value="0.176" />
         <entry key="..\:/Projetos/ferramentas/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2175925925925926" />
         <entry key="..\:/Projetos/ferramentas/app/src/main/res/drawable/animate_fadein.xml" value="0.21574074074074073" />
         <entry key="..\:/Projetos/ferramentas/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2175925925925926" />

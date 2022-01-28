@@ -1,37 +1,26 @@
 package com.caiqueponjjar.cuco.helper;
 
+import android.content.Intent
+import com.caiqueponjjar.cuco.MainActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
+
 class usuario {
-    var username : String? = ""
-        get() = field
-        set(value) {
-            field = value
-        }
+    fun getUser(): FirebaseUser? {
 
-    //user first name
-    var personGivenName : String? = ""
-        get() = field
-        set(value) {
-            field = value
-        }
+        val user = FirebaseAuth.getInstance().currentUser
+        return(user);
 
-    //user last name
-    var personFamilyName : String? = ""
-        get() = field
-        set(value) {
-            field = value
-        }
+    }
+    fun getUsername() : String? {
+        return(getUser()!!.displayName)
+    }
+    fun getEmail() : String? {
+        return(getUser()?.email)
+    }
 
-    //user email id
-    var personEmail : String? = ""
-        get() = field
-        set(value) {
-            field = value
-        }
-
-    //user unique id
-    var personId : String? = ""
-        get() = field
-        set(value) {
-            field = value
-        }
+    fun getUniqueId() : String? {
+        return(getUser()?.uid)
+    }
 }
