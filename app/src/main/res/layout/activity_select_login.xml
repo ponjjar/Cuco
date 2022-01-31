@@ -18,14 +18,16 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_margin="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/roundedconers"
         android:backgroundTint="#4F000000"
         android:enabled="false"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,26 +41,33 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:layout_marginRight="4dp"
+            android:layout_marginBottom="8dp"
             android:layout_weight="1"
             android:background="@color/orange"
+            android:drawableStart="@android:drawable/ic_lock_idle_lock"
             android:enabled="true"
-            android:text="@string/action_sign_in"
-            android:textColor="@color/white" />
+            android:foregroundGravity="left|clip_vertical"
+            android:padding="10dp"
+            android:text="Usuário e senha"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/withGoogle"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="4dp"
             android:layout_weight="1"
             android:background="@color/lightblue"
             android:backgroundTintMode="add"
+            android:drawableStart="@drawable/common_google_signin_btn_icon_dark"
+            android:foregroundGravity="left|clip_vertical"
+            android:padding="10dp"
             android:text="Entrar com Google"
-            app:iconGravity="start"
+            android:textSize="16sp"
             app:iconPadding="0dp"
-            app:iconSize="35dp"
-            app:iconTintMode="src_in" />
+            app:iconSize="0dp"
+            app:iconTintMode="src_in"></Button>
     </LinearLayout>
 
     <ImageView

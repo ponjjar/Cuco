@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import com.caiqueponjjar.cuco.R.*
+import com.caiqueponjjar.cuco.helper.usuario
 import com.caiqueponjjar.cuco.ui.login.LoginActivity
 
 
@@ -69,7 +70,14 @@ class SelectLogin : AppCompatActivity() {
         val fadeInDuration = 500 // Configure time values here
 
     }
-
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = usuario().getUser()
+        if(currentUser != null || usuario().getAccount(this) != null){
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+    }
     override fun onResume() {
         super.onResume()
         videoview.start()

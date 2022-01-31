@@ -53,14 +53,17 @@
             android:id="@+id/AddBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Adicionar" />
+            android:backgroundTint="#4F5AC6"
+            android:text="Adicionar"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/ShareBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_horizontal"
-            android:backgroundTint="#4CA845"
-            android:text="Compartilhar" />
+            android:backgroundTint="#2E9126"
+            android:text="Compartilhar"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

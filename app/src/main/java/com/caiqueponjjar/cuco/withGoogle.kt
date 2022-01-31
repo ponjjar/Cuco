@@ -30,6 +30,10 @@ import androidx.fragment.app.Fragment
 import com.caiqueponjjar.cuco.helper.usuario
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.FirebaseUser
+
+
+
 
 
 class withGoogle : Fragment(com.caiqueponjjar.cuco.R.layout.activity_firstfragment){
@@ -119,9 +123,8 @@ class withGoogle : Fragment(com.caiqueponjjar.cuco.R.layout.activity_firstfragme
      */
     private fun getProfileInformation(acct: GoogleSignInAccount?) {
         //if account is not null fetch the information
-        if (acct != null) {
-            var usuario = usuario()
 
+        if (acct != null) {
         //    Toast.makeText(activity, "Ola " + usuario.personEmail, Toast.LENGTH_SHORT).show();
             val fragment = FirstFragment();
             val bundle = Bundle()

@@ -1,6 +1,12 @@
 package com.caiqueponjjar.cuco.ui.login
 
+import android.animation.ArgbEvaluator
+import android.animation.TimeAnimator
+import android.animation.ValueAnimator
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -24,14 +30,7 @@ import androidx.annotation.NonNull
 import com.caiqueponjjar.cuco.helper.usuario
 
 import com.google.android.gms.tasks.OnCompleteListener
-
-
-
-
-
-
-
-
+import java.lang.Exception
 
 
 class LoginActivity : AppCompatActivity() {
@@ -50,6 +49,8 @@ class LoginActivity : AppCompatActivity() {
             //check email already exist or not.
             auth.fetchSignInMethodsForEmail(email)
                 .addOnCompleteListener(OnCompleteListener<SignInMethodQueryResult?> { task ->
+                    try {
+
                     val isNewUser = task.result.signInMethods?.isEmpty()
                     if (isNewUser == true) {
 
@@ -57,8 +58,12 @@ class LoginActivity : AppCompatActivity() {
                     } else {
                         Login(email, password)
                     }
+                    }catch (e: Exception){
+                        Toast.makeText(this,"email ou senha invalido.", Toast.LENGTH_SHORT)
+                    }
                 })
         }
+        startAnimation(R.drawable.gradientanimated,this);
         val cadastrarBtn = findViewById<Button>(R.id.Cadastrar)
         cadastrarBtn.setOnClickListener {
             username = findViewById<EditText>(R.id.username).text.toString()
@@ -127,7 +132,7 @@ class LoginActivity : AppCompatActivity() {
                    // Toast.makeText(this, "deu certo!!", Toast.LENGTH_SHORT).show()
                 } else {
                     // If sign in fails, display a message to the user.
-                    Toast.makeText(baseContext, "Ops, algo deu errado.",
+                    Toast.makeText(baseContext, "Ops, email ou senha inválido.",
                         Toast.LENGTH_SHORT).show()
                 }
             }
@@ -140,7 +145,7 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                        if(usuario().getUsername().equals(null)) {
+                        if(usuario().getUsername(this).equals(null)) {
 
                             LoadRegisterUsername()
                         }else{
@@ -149,11 +154,33 @@ class LoginActivity : AppCompatActivity() {
                         }
                 } else {
                     // If sign in fails, display a message to the user.
-                    Toast.makeText(baseContext, "Ops, algo deu errado.",
+                    Toast.makeText(baseContext, "Ops, email ou senha inválido.",
                         Toast.LENGTH_SHORT).show()
                 }
             }
 
+    }
+    fun startAnimation(view: Int, activity: Activity) {
+        val start = Color.parseColor("#E1233F")
+        val mid = Color.parseColor("#D8523A")
+        val end = Color.parseColor("#E83515")
+        val evaluator = ArgbEvaluator()
+        val preloader = activity.findViewById<View>(R.id.gradientPreloaderView)
+        preloader.visibility = View.VISIBLE
+        val gradient = preloader.background as GradientDrawable
+        val animator = TimeAnimator.ofFloat(0.0f, 1.0f)
+        animator.duration = 3000
+        animator.repeatCount = ValueAnimator.INFINITE
+        animator.repeatMode = ValueAnimator.REVERSE
+        animator.addUpdateListener { valueAnimator ->
+            val fraction = valueAnimator.animatedFraction
+            val newStart = evaluator.evaluate(fraction, start, end) as Int
+            val newMid = evaluator.evaluate(fraction, mid, start) as Int
+            val newEnd = evaluator.evaluate(fraction, end, mid) as Int
+            val newArray = intArrayOf(newStart, newMid, newEnd)
+            gradient.colors = newArray
+        }
+        animator.start()
     }
     }
 
