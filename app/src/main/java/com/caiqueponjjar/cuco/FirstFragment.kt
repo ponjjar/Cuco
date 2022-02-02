@@ -9,8 +9,11 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,6 +34,7 @@ import java.lang.reflect.Array.newInstance
 class FirstFragment : Fragment(R.layout.activity_firstfragment){
     private lateinit var itemList : ArrayList<Item>
     private lateinit var listview : RecyclerView
+    private lateinit var loadingList : ProgressBar
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -38,7 +42,8 @@ class FirstFragment : Fragment(R.layout.activity_firstfragment){
           //  val textView = view.findViewById<TextView>(R.id.textView)
           //  textView.text = textInfo
         var welcomeText = view.findViewById<TextView>(R.id.welcomeText)
-        welcomeText.text = "Olá, " + activity?.let { usuario().getUsername(it) }
+        loadingList = view.findViewById<ProgressBar>(R.id.LoadingList)
+        welcomeText.text = "Olá, " + usuario().getUsername(requireActivity())
 
         listview = view.findViewById<RecyclerView>(R.id.list_item)
         val FloatButton = view.findViewById<FloatingActionButton>(R.id.floatingActionButton)
@@ -52,8 +57,11 @@ class FirstFragment : Fragment(R.layout.activity_firstfragment){
          //val editNameDialogFragment: EditNameDialogFragment = EditNameDialogFragment.newInstance("Some Title")
             val pop = SecondFragment()
             val fm = requireActivity().supportFragmentManager
+
             if (fm != null) {
                 pop.show(fm, "name")
+             //   fm.setStyle(DialogFragment.STYLE_NO_FRAME, 0);
+                pop.dialog?.getWindow()?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             }
             }
 
@@ -95,8 +103,9 @@ class FirstFragment : Fragment(R.layout.activity_firstfragment){
                     System.out.println("Email:" + userId + "| title:" + title)
                     itemList.add(Item(title.toString(), subtitle.toString()))
                 }
+                loadingList.visibility = View.GONE
 
-                listview.adapter = ListAdapter( itemList)
+                listview.adapter = parentFragmentManager?.let { ListAdapter( itemList, it) }
             }
         })
     }

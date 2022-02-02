@@ -15,6 +15,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.caiqueponjjar.cuco.R.*
 import com.caiqueponjjar.cuco.helper.usuario
 import com.caiqueponjjar.cuco.ui.login.LoginActivity
+import android.R
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 
 
 class SelectLogin : AppCompatActivity() {
@@ -58,7 +61,7 @@ class SelectLogin : AppCompatActivity() {
 
         val WithGoogleButton = findViewById<Button>(id.withGoogle)
         WithGoogleButton.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, withGoogle::class.java))
 
         }
         val LoginButton = findViewById<Button>(id.login)
@@ -75,6 +78,7 @@ class SelectLogin : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = usuario().getUser()
         if(currentUser != null || usuario().getAccount(this) != null){
+            
             startActivity(Intent(this, MainActivity::class.java))
         }
     }

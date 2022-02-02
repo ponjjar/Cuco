@@ -12,7 +12,8 @@
         android:theme="@style/Theme.Cuco">
         <activity
             android:name=".withGoogle"
-            android:exported="false" />
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity
             android:name=".SelectLogin"
             android:exported="true"

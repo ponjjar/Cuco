@@ -5,15 +5,15 @@
     android:id="@+id/SecondfragmentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:layout_marginStart="32dp"
+    android:layout_marginEnd="32dp"
+    android:background="@drawable/roundedconers"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/SecondFragmentlinear"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/roundedconers"
-        android:backgroundTint="#F0F9FF"
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,7 +32,7 @@
 
         <EditText
             android:id="@+id/EdtTitulo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/titulo"
@@ -41,7 +41,7 @@
 
         <EditText
             android:id="@+id/EdtSubtitulo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:ems="10"
@@ -59,9 +59,11 @@
 
         <Button
             android:id="@+id/ShareBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_horizontal"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
             android:backgroundTint="#2E9126"
             android:text="Compartilhar"
             android:textColor="#FFFFFF" />

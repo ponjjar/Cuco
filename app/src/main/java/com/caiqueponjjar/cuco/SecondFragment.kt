@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
@@ -21,7 +22,6 @@ public class SecondFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
 
         var myView = inflater!!.inflate(R.layout.activity_secondfragment
             , container, false)
@@ -54,5 +54,10 @@ public class SecondFragment : DialogFragment() {
         return myView
 
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        getDialog()!!.getWindow()!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
     }
 }

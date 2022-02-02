@@ -48,11 +48,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/gradientoolbar"
+            android:backgroundTint="#66FAB178"
             android:gravity="center"
             android:padding="4dp"
             android:text="welcome"
             android:textAppearance="@style/TextAppearance.AppCompat.Display4"
             android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/accountLogo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/logo4" />
+
     </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/LoadingList"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="#FA9159"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

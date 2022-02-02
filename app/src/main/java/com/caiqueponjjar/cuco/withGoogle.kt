@@ -24,6 +24,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import android.R
+import android.os.PersistableBundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -36,7 +37,7 @@ import com.google.firebase.auth.FirebaseUser
 
 
 
-class withGoogle : Fragment(com.caiqueponjjar.cuco.R.layout.activity_firstfragment){
+class withGoogle : AppCompatActivity() {
 
     //google sign in client
     var mGoogleSignInClient: GoogleSignInClient? = null
@@ -44,8 +45,9 @@ class withGoogle : Fragment(com.caiqueponjjar.cuco.R.layout.activity_firstfragme
     private val RC_SIGN_IN = 111 //google sign in request code
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(com.caiqueponjjar.cuco.R.layout.activity_with_google)
         configureGoogleSignIn();
         doSignInSignOut()
     }
@@ -57,13 +59,13 @@ class withGoogle : Fragment(com.caiqueponjjar.cuco.R.layout.activity_firstfragme
             .build()
 
         // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = activity?.let { getClient(it, gso) }
+        mGoogleSignInClient = this?.let { getClient(it, gso) }
     }
 
     private fun doSignInSignOut() {
 
         //get the last sign in account
-        val account = activity?.let { GoogleSignIn.getLastSignedInAccount(it) }
+        val account = this?.let { GoogleSignIn.getLastSignedInAccount(it) }
 
         //if account doesn't exist do login else do sign out
         if (account == null) doGoogleSignIn() //else //doGoogleSignOut()
@@ -93,7 +95,7 @@ class withGoogle : Fragment(com.caiqueponjjar.cuco.R.layout.activity_firstfragme
             getProfileInformation(account);
 
             //show toast
-            Toast.makeText(activity, "Google Sign In Successful.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Google Sign In Successful.", Toast.LENGTH_SHORT).show();
 
         } catch (e: ApiException ) {
             // The ApiException status code indicates the detailed failure reason.
@@ -101,7 +103,7 @@ class withGoogle : Fragment(com.caiqueponjjar.cuco.R.layout.activity_firstfragme
             Log.e(TAG, "signInResult:failed code=" + e.getStatusCode());
 
             //show toast
-            Toast.makeText(activity, "Failed to do Sign In : " + e.getStatusCode(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Failed to do Sign In : " + e.getStatusCode(), Toast.LENGTH_SHORT).show();
 
             //update Ui for this
             getProfileInformation(null);
@@ -112,9 +114,11 @@ class withGoogle : Fragment(com.caiqueponjjar.cuco.R.layout.activity_firstfragme
         //SILENT SIGN IN
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
-        val account = activity?.let { GoogleSignIn.getLastSignedInAccount(it) }
+        val account = this?.let { GoogleSignIn.getLastSignedInAccount(it) }
         //update the UI if user has already sign in with the google for this app
-        getProfileInformation(account)
+        if(account != null) {
+            getProfileInformation(account)
+        }
     }
     /**
      * method to fetch user profile information from GoogleSignInAccount
@@ -140,12 +144,9 @@ class withGoogle : Fragment(com.caiqueponjjar.cuco.R.layout.activity_firstfragme
             //user unique id
             bundle.putString("personId",acct.id)
 
-
-            fragment.arguments = bundle
-            parentFragmentManager.beginTransaction()
-                .replace(com.caiqueponjjar.cuco.R.id.fragment_container_view, fragment).addToBackStack(null).commit()
+            startActivity(Intent(this, MainActivity::class.java))
         } else {
-          //  Toast.makeText(activity, "Houve algum erro ao logar :( " , Toast.LENGTH_SHORT).show();
+            doGoogleSignIn()
         }
     }
 

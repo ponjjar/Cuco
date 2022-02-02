@@ -34,7 +34,7 @@ class usuario {
             return (getUser()?.displayName)
         }
         if(!getAccount(activity)?.displayName.equals(null) ){
-            return (getAccount(activity)?.displayName)
+            return (getAccount(activity)?.givenName)
         }
         return null
     }
