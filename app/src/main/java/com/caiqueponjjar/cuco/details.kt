@@ -21,9 +21,12 @@ class details : Fragment(R.layout.activity_firstfragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if( arguments?.getString("Titulo") != null) {
-            //view.findViewById<TextView>(R.id.titleText).text = arguments?.getString("Titulo").toString()
-            //view.findViewById<TextView>(R.id.subtitleText).text = arguments?.getString("Subtitulo").toString()
-        }
+        val bundle: Bundle? = this.arguments
+        if (bundle != null) {
+            var titleTextView : TextView = view.findViewById<TextView>(R.id.titleText)
+            var subtitleTextView : TextView = view.findViewById<TextView>(R.id.subtitleText)
+            titleTextView.text = ""+ bundle.getString("Titulo")
+            subtitleTextView.text = bundle.getString("Subtitulo")
+
     }
-}
+}}

@@ -13,6 +13,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.database.DatabaseError
+
+import com.google.firebase.database.DataSnapshot
+
+import com.google.firebase.database.ValueEventListener
+
+import com.google.firebase.database.FirebaseDatabase
+
+
+
 
 
 class usuario {
@@ -62,6 +72,23 @@ class usuario {
             DatabaseList.child("title").setValue(Titulo)
             DatabaseList.child("subtitle").setValue(Subtitulo)
         }
+    }
+
+    fun deleteData(activity: Activity){
+        val userId = getUniqueId(activity)
+        val ref = FirebaseDatabase.getInstance().reference
+        val Query = ref.child("users").child(userId!!).orderByChild("title").equalTo("Apple")
+
+        Query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (appleSnapshot in dataSnapshot.children) {
+                    appleSnapshot.ref.removeValue()
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+            }
+        })
     }
 
 }

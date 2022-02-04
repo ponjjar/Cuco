@@ -16,6 +16,13 @@ import com.caiqueponjjar.cuco.R.*
 import com.caiqueponjjar.cuco.helper.usuario
 import com.caiqueponjjar.cuco.ui.login.LoginActivity
 import android.R
+import android.app.Dialog
+import android.content.Context
+import android.content.DialogInterface
+import android.content.SharedPreferences
+import android.view.Window
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 
@@ -31,7 +38,20 @@ class SelectLogin : AppCompatActivity() {
         videoview.setVideoURI(uri)
         val metrics = DisplayMetrics()
         this.getWindowManager().getDefaultDisplay().getRealMetrics(metrics)
+        val preferences: SharedPreferences = this.getSharedPreferences("", MODE_PRIVATE)
+        if(!preferences.getBoolean("firstTime",false)) {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Bem vindo!")
+            builder.setMessage("Obrigado por baixar =D")
+            builder.setPositiveButton("Continuar") { dialog, which ->
+                //Toast.makeText(applicationContext,"continuar",Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            }
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
 
+            preferences.edit().putBoolean("firstTime", true).apply()
+        }
         // (getContext() as Activity).windowManager.defaultDisplay.getRealMetrics(metrics)
         //windowManager.defaultDisplay.getMetrics(metrics)
         val params = videoview.getLayoutParams()

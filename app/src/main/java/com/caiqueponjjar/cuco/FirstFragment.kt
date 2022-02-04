@@ -100,12 +100,13 @@ class FirstFragment : Fragment(R.layout.activity_firstfragment){
                     //Carregando lista de dados
                     var subtitle = postSnapshot.child("subtitle").getValue(String::class.java)
                     var title = postSnapshot.child("title").getValue(String::class.java)
-                    System.out.println("Email:" + userId + "| title:" + title)
+                    var id = postSnapshot.getValue()
+                    System.out.println("Email:" + userId + "| title:" + title + "| id:"+ id)
                     itemList.add(Item(title.toString(), subtitle.toString()))
                 }
                 loadingList.visibility = View.GONE
 
-                listview.adapter = parentFragmentManager?.let { ListAdapter( itemList, it) }
+                listview.adapter = ListAdapter( itemList, requireActivity())
             }
         })
     }
