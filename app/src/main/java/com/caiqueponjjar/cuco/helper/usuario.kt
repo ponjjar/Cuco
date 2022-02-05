@@ -53,13 +53,12 @@ class usuario {
     }
 
     fun getUniqueId(activity: Activity) : String? {
-        if(getUser() != null) {
+        if(getUser()?.uid  != null) {
             return (getUser()?.uid)
         }
-       /* if(!getAccount(activity)?.email.equals(null) ){
-            return (
-                    getAccount(activity).id)
-        }*/
+        if(!getAccount(activity)?.id.equals(null) ){
+            return getAccount(activity)?.id
+        }
         return null
     }
 
