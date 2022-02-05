@@ -53,12 +53,13 @@ class usuario {
     }
 
     fun getUniqueId(activity: Activity) : String? {
-        if(getUser()?.email != null) {
-            return (getUser()?.email?.replace(".",""))
+        if(getUser() != null) {
+            return (getUser()?.uid)
         }
-        if(!getAccount(activity)?.email.equals(null) ){
-            return (getAccount(activity)?.email?.replace(".",""))
-        }
+       /* if(!getAccount(activity)?.email.equals(null) ){
+            return (
+                    getAccount(activity).id)
+        }*/
         return null
     }
 
@@ -71,24 +72,15 @@ class usuario {
             DatabaseList.child("username").setValue(username)
             DatabaseList.child("title").setValue(Titulo)
             DatabaseList.child("subtitle").setValue(Subtitulo)
+            DatabaseList.child("key").setValue(DatabaseList.key)
         }
     }
 
-    fun deleteData(activity: Activity){
+    fun deleteData(activity: Activity, Key: String){
         val userId = getUniqueId(activity)
         val ref = FirebaseDatabase.getInstance().reference
-        val Query = ref.child("users").child(userId!!).orderByChild("title").equalTo("Apple")
-
-        Query.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (appleSnapshot in dataSnapshot.children) {
-                    appleSnapshot.ref.removeValue()
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-            }
-        })
+        val query = ref.child("users").child(userId!!).child(Key)
+        query.removeValue()
     }
 
 }

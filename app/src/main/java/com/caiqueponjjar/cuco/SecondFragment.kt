@@ -31,7 +31,7 @@ public class SecondFragment : DialogFragment() {
             val buttonShare = myView.findViewById<Button>(R.id.ShareBtn)
         val buttonAdicionar = myView.findViewById<Button>(R.id.AddBtn)
         buttonAdicionar.setOnClickListener{
-            usuario().commitNewData(requireActivity(), titulo.toString(),subtitulo.toString())
+                usuario().commitNewData(requireActivity(), titulo.toString(),subtitulo.toString())
        // val fragment = FirstFragment();
       //val bundle = Bundle().apply { putString("Titulo", titulo.toString())
         //    putString("Subtitulo", subtitulo.toString())

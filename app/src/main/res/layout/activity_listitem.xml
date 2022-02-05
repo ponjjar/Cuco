@@ -10,7 +10,6 @@
     android:layout_marginRight="16dp"
     android:clickable="true"
     android:foreground="?selectableItemBackground"
-    card_view:cardBackgroundColor="#FFFF"
     card_view:cardCornerRadius="8dp"
     card_view:contentPadding="10dp">
 
