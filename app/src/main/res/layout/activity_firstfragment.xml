@@ -65,15 +65,53 @@
 
     </androidx.cardview.widget.CardView>
 
-    <ProgressBar
-        android:id="@+id/LoadingList"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:indeterminateTint="#FA9159"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LoadingConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/gradientoolbar"
+        android:backgroundTint="#68FFB570"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <ProgressBar
+            android:id="@+id/LoadingList"
+            style="@android:style/Widget.Holo.Light.ProgressBar.Large"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:drawable/radiobutton_off_background"
+            android:backgroundTint="@android:color/background_dark"
+            android:indeterminate="true"
+            android:indeterminateTint="#DE6229"
+            app:layout_constraintBottom_toBottomOf="@+id/LoadingImage"
+            app:layout_constraintEnd_toEndOf="@+id/LoadingImage"
+            app:layout_constraintStart_toStartOf="@+id/LoadingImage"
+            app:layout_constraintTop_toTopOf="@+id/LoadingImage" />
+
+        <ImageView
+            android:id="@+id/LoadingImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/roundedconers"
+            android:stateListAnimator="@anim/floating"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo5" />
+
+        <TextView
+            android:id="@+id/BirdEyes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="36dp"
+            android:background="#461701"
+            android:paddingStart="12dp"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@+id/LoadingImage"
+            app:layout_constraintTop_toTopOf="@+id/LoadingImage" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

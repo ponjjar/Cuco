@@ -8,9 +8,6 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import com.caiqueponjjar.cuco.R.*
 import com.caiqueponjjar.cuco.helper.usuario
@@ -21,7 +18,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.view.Window
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -33,6 +30,12 @@ class SelectLogin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_select_login)
+        val currentUser = usuario().getUser()
+        if(currentUser != null || usuario().getAccount(this) != null){
+
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+
         videoview = findViewById<View>(id.backgroundVideo) as VideoView
         val uri: Uri = Uri.parse("android.resource://" + packageName + "/" + raw.cuckoofootage)
         videoview.setVideoURI(uri)
@@ -52,6 +55,7 @@ class SelectLogin : AppCompatActivity() {
 
             preferences.edit().putBoolean("firstTime", true).apply()
         }
+
         // (getContext() as Activity).windowManager.defaultDisplay.getRealMetrics(metrics)
         //windowManager.defaultDisplay.getMetrics(metrics)
         val params = videoview.getLayoutParams()
@@ -78,6 +82,7 @@ class SelectLogin : AppCompatActivity() {
         videoview.start()
         val myFadeInAnimation: Animation = AnimationUtils.loadAnimation(this, anim.fadein)
         findViewById<ImageView>(id.LogoImage).startAnimation(myFadeInAnimation) //Set animation to your ImageView
+        findViewById<LinearLayout>(id.linearLayout).startAnimation(myFadeInAnimation) //Set animation to your ImageView
 
         val WithGoogleButton = findViewById<Button>(id.withGoogle)
         WithGoogleButton.setOnClickListener {

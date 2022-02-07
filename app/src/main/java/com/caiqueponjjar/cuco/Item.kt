@@ -1,9 +1,9 @@
 package com.caiqueponjjar.cuco;
 
 public class Item {
-    var itemTitle : String? = ""
-    var itemSubtitle : String? = ""
-    var itemKey : String = ""
+    var itemTitle : String = " "
+    var itemSubtitle : String = " "
+    var itemKey : String = " "
 
     constructor(itemTitle: String, itemSubtitle : String, itemKey : String)
     {

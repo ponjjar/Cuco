@@ -1,5 +1,6 @@
 package com.caiqueponjjar.cuco;
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -7,8 +8,11 @@ import android.view.Window
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,14 +28,28 @@ import com.google.firebase.ktx.Firebase
 class FirstFragment : Fragment(R.layout.activity_firstfragment){
     private lateinit var itemList : ArrayList<Item>
     private lateinit var listview : RecyclerView
-    private lateinit var loadingList : ProgressBar
+    private lateinit var loadingList : ConstraintLayout
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
           //  val textInfo = arguments?.getString("key")
           //  val textView = view.findViewById<TextView>(R.id.textView)
           //  textView.text = textInfo
         var welcomeText = view.findViewById<TextView>(R.id.welcomeText)
-        loadingList = view.findViewById<ProgressBar>(R.id.LoadingList)
+        loadingList = view.findViewById<ConstraintLayout>(R.id.LoadingConstraint)
+        var loadingImage = view.findViewById<ImageView>(R.id.LoadingImage)
+        var anim: Animation = AnimationUtils.loadAnimation(
+            activity, R.anim.floating
+        )
+        anim.repeatCount = Animation.INFINITE
+        loadingImage.startAnimation(anim)
+        var EyesBird = view.findViewById<TextView>(R.id.BirdEyes)
+        var animEyes: Animation = AnimationUtils.loadAnimation(
+            activity, R.anim.eyes
+        )
+        animEyes.repeatCount = Animation.INFINITE
+        EyesBird.startAnimation(animEyes)
+
+
         welcomeText.text = "Olá, " + usuario().getUsername(requireActivity())
 
         listview = view.findViewById<RecyclerView>(R.id.list_item)
@@ -83,11 +101,12 @@ class FirstFragment : Fragment(R.layout.activity_firstfragment){
 
         itemList = ArrayList<Item>()
 
+        var adapter = ListAdapter( itemList, requireActivity());
         rootRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
                 println(error!!.message)
             }
-            var adapter = ListAdapter( itemList, requireActivity());
+
             override fun onDataChange(snapshot: DataSnapshot) {
                 itemList.clear()
                 for (postSnapshot in snapshot.children) {
@@ -122,9 +141,14 @@ class FirstFragment : Fragment(R.layout.activity_firstfragment){
                         )
                     )
                 }
-
+                adapter = ListAdapter( itemList, requireActivity());
                 loadingList.visibility = View.GONE
-                listview.adapter = adapter
+                if(listview.adapter == null) {
+                    listview.adapter = adapter
+                }else {
+                    listview.adapter?.notifyDataSetChanged();
+                }
+                //listview.adapter = adapter
             }
         })
     }
