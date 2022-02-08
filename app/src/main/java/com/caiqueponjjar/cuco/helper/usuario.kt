@@ -3,6 +3,7 @@ package com.caiqueponjjar.cuco.helper;
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import com.caiqueponjjar.cuco.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -62,7 +63,7 @@ class usuario {
         return null
     }
 
-    fun commitNewData(activity: Activity, Titulo: String , Subtitulo : String){
+    fun commitNewData(activity: Activity, Titulo: String , Subtitulo : String, color: Int){
         val userId = getUniqueId(activity)
         val username = getUsername(activity)
         database = Firebase.database.reference
@@ -71,6 +72,7 @@ class usuario {
             DatabaseList.child("username").setValue(username)
             DatabaseList.child("title").setValue(Titulo)
             DatabaseList.child("subtitle").setValue(Subtitulo)
+            DatabaseList.child("color").setValue(color)
             DatabaseList.child("key").setValue(DatabaseList.key)
         }
     }

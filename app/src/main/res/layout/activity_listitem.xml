@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_pertanyaan"
     android:layout_width="match_parent"
@@ -43,4 +43,11 @@
                 android:textSize="18sp" />
         </LinearLayout>
     </RelativeLayout>
-</androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/colorItem"
+        android:layout_width="4dp"
+        android:layout_height="match_parent"
+        android:background="#D6713B"
+        card_view:srcCompat="@drawable/roundedconers" />
+</com.google.android.material.card.MaterialCardView>

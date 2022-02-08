@@ -1,20 +1,24 @@
 package com.caiqueponjjar.cuco;
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.EditText
+import android.widget.*
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import com.caiqueponjjar.cuco.helper.usuario
-
-
-
-
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textview.MaterialTextView
+import com.maxkeppeler.sheets.color.ColorSheet
+import com.maxkeppeler.sheets.info.InfoSheet
 
 public class SecondFragment : DialogFragment() {
     override fun onCreateView(
@@ -28,10 +32,21 @@ public class SecondFragment : DialogFragment() {
 
         val titulo = myView.findViewById<EditText>(R.id.EdtTitulo).text
             val subtitulo = myView.findViewById<EditText>(R.id.EdtSubtitulo).text
-            val buttonShare = myView.findViewById<Button>(R.id.ShareBtn)
-        val buttonAdicionar = myView.findViewById<Button>(R.id.AddBtn)
+            val buttonShare = myView.findViewById<ImageButton>(R.id.ShareBtn)
+        val buttonAdicionar = myView.findViewById<MaterialButton>(R.id.AddBtn)
+
+        var colorPicked: Int = Color.parseColor("#E05F22");
+        val colorTextPrefered = myView.findViewById<ImageView>(R.id.imageViewColor)
+        colorTextPrefered.setColorFilter(colorPicked - 5, android.graphics.PorterDuff.Mode.MULTIPLY)
+        var getThisDialog = dialog;
         buttonAdicionar.setOnClickListener{
-                usuario().commitNewData(requireActivity(), titulo.toString(),subtitulo.toString())
+            if(titulo.toString().length > 1 && subtitulo.toString().length > 1){
+                usuario().commitNewData(
+                    requireActivity(),
+                    titulo.toString(),
+                    subtitulo.toString(),
+                    colorPicked
+                )
        // val fragment = FirstFragment();
       //val bundle = Bundle().apply { putString("Titulo", titulo.toString())
         //    putString("Subtitulo", subtitulo.toString())
@@ -39,7 +54,101 @@ public class SecondFragment : DialogFragment() {
         //fragment.arguments = bundle
      //   parentFragmentManager.beginTransaction() .replace(R.id.fragment_container_view, fragment).addToBackStack(null).commit()
             dismiss()
+            }else{
+
+                InfoSheet().show(requireContext()) {
+                    title("Opss! Você esqueceu de preencher algum campo!")
+                    content("Que tal preencher todos os campos para adicionar um novo item?")
+                    onPositive("OK") {
+
+                    }
+                    if(titulo.toString().length > 1){
+                        onNegative("Adicionar mesmo assim") {
+                            usuario().commitNewData(
+                                requireActivity(),
+                                titulo.toString(),
+                                subtitulo.toString(),
+                                colorPicked
+                            )
+
+                            getThisDialog?.dismiss()
+                        }
+                    }else{
+                        onNegative("VOLTAR") {
+                            getThisDialog?.dismiss()
+                        }
+                    }
+
+                }
+            }
         }
+        val button = Button(context, null, android.R.attr.buttonStyle)
+        button.setTextSize(14f)
+        button.setTextColor(Color.parseColor("#E05F22"))
+        val colorButton = myView.findViewById<ImageView>(R.id.BtnColorpicker)
+
+       // val sheet = ColorSheet().build(requireActivity())
+        //
+        myView.findViewById<ConstraintLayout>(R.id.PreferedColor).setOnClickListener {
+
+            ColorSheet()
+                .build(requireContext()) {
+                title("Selecione uma cor")
+                    disableSwitchColorView()
+                    colorsInt(
+                        Color.parseColor("#384fc7"),//Azul
+                        Color.parseColor("#1f69d1"),//Azul normal
+                        Color.parseColor("#7595ff"),//Azul claro
+                        Color.parseColor("#1fd1cb"),//Ciano
+                        Color.parseColor( "#fae739"),//Amarelo
+                        Color.parseColor("#ed7207"),//Quentes
+                        Color.parseColor("#d11f54"),//Vermelho claro
+                        Color.parseColor("#db1818"),//Vermelhos
+                        Color.parseColor("#750000"),//Vermelhos escuros
+                        Color.parseColor("#a147e6"),//Roxos
+                        Color.parseColor("#ec84f0"), //Rosa
+                        Color.parseColor("#d11fce"),//Esquentando
+                        Color.parseColor("#00ff00"), //verde normal
+                        Color.parseColor("#88ff80"),//verde claro
+                        Color.parseColor("#37913c"),//verde escuro
+
+                        //Pastel:
+                        Color.parseColor("#ffbd8a"),//pastel
+                        Color.parseColor("#fbffab"),//pastel
+                        Color.parseColor("#fbffab"),//pastel
+                        Color.parseColor("#abfeff"),//pastel
+                        Color.parseColor("#c3abff"),//pastel
+                        Color.parseColor("#ffabfb"),//pastel
+
+                        Color.parseColor("#ffffff"),//Branco
+                        Color.parseColor("#737373"), //cinza
+                        Color.parseColor("#00000000") //preto
+                    )
+                onPositive { color ->
+
+                    colorPicked = color
+                    colorTextPrefered.setColorFilter(color, android.graphics.PorterDuff.Mode.MULTIPLY)
+                    colorButton.setColorFilter(color, android.graphics.PorterDuff.Mode.MULTIPLY)
+                }
+            }
+                .show()
+
+
+                }
+/*
+                .addListenerButton(
+                    "Selecionar", button
+                ) { v, position, color ->
+                    colorPicked = color
+                    colorButton.setColorFilter(color, android.graphics.PorterDuff.Mode.MULTIPLY)
+                    dialog?.dismiss()
+                }
+                .setDefaultColorButton(Color.parseColor("#f84c44"))
+                .setColorButtonDrawable(R.color.blue_200)
+                .disableDefaultButtons(true)
+                .setColumns(5)
+                .show()*/
+
 
         buttonShare.setOnClickListener {
             val sendIntent = Intent().apply {
@@ -50,7 +159,6 @@ public class SecondFragment : DialogFragment() {
             val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
         }
-
         return myView
 
 
@@ -59,5 +167,8 @@ public class SecondFragment : DialogFragment() {
     override fun onStart() {
         super.onStart()
         getDialog()!!.getWindow()!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        getDialog()!!.getWindow()!!.setBackgroundDrawable(ResourcesCompat.getDrawable(resources, R.drawable.dialogcorners, null))
+        //getDialog()!!.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
     }
 }

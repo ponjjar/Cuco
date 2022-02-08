@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/SecondfragmentLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginStart="32dp"
-    android:layout_marginEnd="32dp"
-    android:background="@drawable/roundedconers"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:background="?android:attr/windowBackground"
+    android:backgroundTint="?android:attr/colorBackground"
+    android:orientation="vertical"
+    android:theme="@style/Theme.Cuco">
 
     <LinearLayout
         android:id="@+id/SecondFragmentlinear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/dialogcorners"
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.39">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,42 +32,120 @@
             android:text="@string/adicionar_novo_item"
             android:textSize="20sp" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/EdtTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:ems="10"
             android:hint="@string/titulo"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/EdtSubtitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:hint="@string/subtitulo"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
 
-        <Button
-            android:id="@+id/AddBtn"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#4F5AC6"
-            android:text="Adicionar"
-            android:textColor="#FFFFFF" />
+            android:layout_height="match_parent"
+            android:background="@drawable/roundedconers"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/ShareBtn"
-            android:layout_width="match_parent"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/PreferedColor"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTintMode="src_in"
+                android:padding="2dp"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:id="@+id/imageViewColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTintMode="screen"
+                    android:elevation="0dp"
+                    android:gravity="center_vertical"
+                    android:text="Cor preferida"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="18sp"
+                    app:srcCompat="@drawable/gradientcard"
+                    tools:layout_editor_absoluteX="10dp"
+                    tools:layout_editor_absoluteY="2dp" />
+
+                <ImageView
+                    android:id="@+id/BtnColorpicker"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right|center_horizontal"
+                    android:tintMode="multiply"
+                    app:layout_constraintEnd_toEndOf="@+id/imageViewColor"
+                    app:srcCompat="@drawable/colorpickericon"
+                    app:tint="#E05F22"
+                    tools:layout_editor_absoluteY="2dp" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:hint="Cor preferida"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="64dp"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|center_horizontal"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:backgroundTint="#2E9126"
-            android:text="Compartilhar"
-            android:textColor="#FFFFFF" />
+            android:layout_gravity="end"
+            android:layout_marginTop="8dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ShareBtn"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/roundedconers"
+                app:srcCompat="@android:drawable/ic_menu_share" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/AddBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_weight="1"
+                android:background="@drawable/roundedconers"
+                android:text="Adicionar"
+                app:backgroundTint="#005CDD"></com.google.android.material.button.MaterialButton>
+
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

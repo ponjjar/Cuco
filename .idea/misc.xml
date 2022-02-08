@@ -5,16 +5,20 @@
       <map>
         <entry key="..\:/Projetos/Cuco/app/src/main/res/drawable-v24/gradientanimated.xml" value="0.290625" />
         <entry key="..\:/Projetos/Cuco/app/src/main/res/drawable-v24/gradientoolbar.xml" value="0.176" />
+        <entry key="..\:/Projetos/Cuco/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.235" />
+        <entry key="..\:/Projetos/Cuco/app/src/main/res/drawable/circleborders.xml" value="0.234" />
+        <entry key="..\:/Projetos/Cuco/app/src/main/res/drawable/dialogcorners.xml" value="0.234" />
+        <entry key="..\:/Projetos/Cuco/app/src/main/res/drawable/gradientcard.xml" value="0.215" />
         <entry key="..\:/Projetos/Cuco/app/src/main/res/drawable/modalbuttons.xml" value="0.239" />
         <entry key="..\:/Projetos/Cuco/app/src/main/res/drawable/roundedconers.xml" value="0.290625" />
-        <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/activity_firstfragment.xml" value="0.28546712802768165" />
-        <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/activity_listitem.xml" value="0.152" />
+        <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/activity_firstfragment.xml" value="0.23023504273504272" />
+        <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/activity_listitem.xml" value="0.264" />
         <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/activity_login.xml" value="0.176" />
         <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/activity_main.xml" value="0.15364583333333334" />
-        <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/activity_secondfragment.xml" value="0.264" />
+        <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/activity_secondfragment.xml" value="0.176" />
         <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/activity_select_login.xml" value="0.10400000000000001" />
         <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/activity_with_google.xml" value="0.21693840579710144" />
-        <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/fragment_details.xml" value="0.536" />
+        <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/fragment_details.xml" value="0.152" />
         <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/fragmentlayout.xml" value="0.20380434782608695" />
         <entry key="..\:/Projetos/Cuco/app/src/main/res/layout/gradientoolbar.xml" value="0.23641304347826086" />
         <entry key="..\:/Projetos/Cuco/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.16979166666666667" />
