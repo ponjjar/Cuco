@@ -15,7 +15,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -39,6 +38,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 
+
 dependencies {
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:29.0.3')
@@ -55,6 +55,7 @@ dependencies {
     implementation 'com.maxkeppeler.sheets:color:2.2.6'
     implementation 'com.maxkeppeler.sheets:core:2.2.6'
     implementation 'com.maxkeppeler.sheets:info:2.2.6'
+    implementation 'com.maxkeppeler.sheets:options:2.2.6'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'

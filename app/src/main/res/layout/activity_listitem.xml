@@ -2,6 +2,7 @@
 
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_pertanyaan"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,14 +14,17 @@
     card_view:cardCornerRadius="8dp"
     card_view:contentPadding="10dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/linearLayout2"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            card_view:layout_constraintEnd_toStartOf="@+id/category_image"
+            card_view:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/title_textview"
@@ -42,12 +46,22 @@
                 android:text="Line 2"
                 android:textSize="18sp" />
         </LinearLayout>
-    </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/colorItem"
-        android:layout_width="4dp"
-        android:layout_height="match_parent"
-        android:background="#D6713B"
-        card_view:srcCompat="@drawable/roundedconers" />
+        <ImageView
+            android:id="@+id/category_image"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/colorItem"
+            android:layout_width="4dp"
+            android:layout_height="0dp"
+            android:background="#D6713B"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:srcCompat="@drawable/roundedconers" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

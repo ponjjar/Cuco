@@ -95,7 +95,7 @@ class withGoogle : AppCompatActivity() {
             getProfileInformation(account);
 
             //show toast
-            Toast.makeText(this, "Google Sign In Successful.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Google Sign In Successful.", Toast.LENGTH_SHORT).show();
 
         } catch (e: ApiException ) {
             // The ApiException status code indicates the detailed failure reason.

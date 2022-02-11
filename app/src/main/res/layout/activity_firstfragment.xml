@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/TopLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"><![CDATA[
-    android:orientation="vertical">
-
-    ]]>
+    android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground"
+    android:backgroundTint="?android:attr/colorBackground"
+    android:orientation="vertical"
+    android:theme="@style/Theme.Cuco">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/LayoutFirst"

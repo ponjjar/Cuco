@@ -2,23 +2,23 @@ package com.caiqueponjjar.cuco;
 
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
 import com.caiqueponjjar.cuco.helper.usuario
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.textview.MaterialTextView
 import com.maxkeppeler.sheets.color.ColorSheet
 import com.maxkeppeler.sheets.info.InfoSheet
+import com.maxkeppeler.sheets.options.DisplayMode
+import com.maxkeppeler.sheets.options.Option
+import com.maxkeppeler.sheets.options.OptionsSheet
 
 public class SecondFragment : DialogFragment() {
     override fun onCreateView(
@@ -35,6 +35,7 @@ public class SecondFragment : DialogFragment() {
             val buttonShare = myView.findViewById<ImageButton>(R.id.ShareBtn)
         val buttonAdicionar = myView.findViewById<MaterialButton>(R.id.AddBtn)
 
+        var category : String? = "null"
         var colorPicked: Int = Color.parseColor("#E05F22");
         val colorTextPrefered = myView.findViewById<ImageView>(R.id.imageViewColor)
         colorTextPrefered.setColorFilter(colorPicked - 5, android.graphics.PorterDuff.Mode.MULTIPLY)
@@ -45,7 +46,9 @@ public class SecondFragment : DialogFragment() {
                     requireActivity(),
                     titulo.toString(),
                     subtitulo.toString(),
-                    colorPicked
+                    colorPicked,
+                    category.toString()
+
                 )
        // val fragment = FirstFragment();
       //val bundle = Bundle().apply { putString("Titulo", titulo.toString())
@@ -62,13 +65,15 @@ public class SecondFragment : DialogFragment() {
                     onPositive("OK") {
 
                     }
+
                     if(titulo.toString().length > 1){
                         onNegative("Adicionar mesmo assim") {
                             usuario().commitNewData(
                                 requireActivity(),
                                 titulo.toString(),
                                 subtitulo.toString(),
-                                colorPicked
+                                colorPicked,
+                                category.toString()
                             )
 
                             getThisDialog?.dismiss()
@@ -86,13 +91,62 @@ public class SecondFragment : DialogFragment() {
         button.setTextSize(14f)
         button.setTextColor(Color.parseColor("#E05F22"))
         val colorButton = myView.findViewById<ImageView>(R.id.BtnColorpicker)
-
+        myView.findViewById<ImageView>(R.id.categoryIcon).setColorFilter(colorPicked, android.graphics.PorterDuff.Mode.MULTIPLY)
+        myView.findViewById<ImageView>(R.id.dateIcon).setColorFilter(colorPicked, android.graphics.PorterDuff.Mode.MULTIPLY)
        // val sheet = ColorSheet().build(requireActivity())
         //
+        myView.findViewById<ConstraintLayout>(R.id.Category).setOnClickListener{
+            OptionsSheet().show(requireContext()) {
+                title("Selecione um icone")
+                displayMode(DisplayMode.GRID_VERTICAL)
+                preventIconTint(true)
+                multipleChoices(false)
+                with(
+                    Option(R.drawable.iconfavourite, "favorite"),
+                    Option(R.drawable.iconstar, "Estrela"),
+                    Option(R.drawable.iconvideogame, "VideoGame"),
+                    Option(R.drawable.iconlightbulb, "Lampada"),
+                    Option(R.drawable.iconwallclock, "Relógio"),
+                    Option(R.drawable.iconcalories, "Calorias"),
+                    Option(R.drawable.iconcheck, "Confirmar"),
+                    Option(R.drawable.iconcancel, "Cancelar"), //8
+                    Option(R.drawable.iconfruit, "Frutas"),  //9
+                    Option(R.drawable.iconapple, "maçã"),  //10
+                    Option(R.drawable.iconroastedchicken, "Frango"),  //11
+                    Option(R.drawable.iconfastfood, "FastFood"),  //12
+                    Option(R.drawable.iconsalad, "Salada"),  //13
+                    Option(R.drawable.iconemoji, "Feliz"),  //14
+                    Option(R.drawable.iconsurprised, "Surpreso"),  //15
+                    Option(R.drawable.iconparty, "Festa"),  //16
+                    Option(R.drawable.iconheart, "Amoroso"), //17
+                    Option(R.drawable.iconsad, "Chateado"),  //18
+                    Option(R.drawable.iconbad, "Triste"),  //19
+                    Option(R.drawable.iconscared, "Assustado"),  //20
+                    Option(R.drawable.iconangry, "Bravo"),  //21
+                    Option(R.drawable.iconshocked, "Chocado"),  //21
+                )
+                onPositive { index: Int, option: Option ->
+                    // Handle selected option
+                    category = index.toString()
+                    println(category)
+                }
+            }
+        }
+        /*   myView.findViewById<ConstraintLayout>(R.id.Date).setOnClickListener{
+     CalendarSheet().show(requireContext()) { // Build and show
+              title("Para quando você deseja agendar?") // Set the title of the sheet
+              onPositive ("Escolher") { dateStart, dateEnd ->
+                  // Handle date or range
+              }
+              onNegative ("Cancelar") {
+                  // Handle cancel
+              }
+        }*/
         myView.findViewById<ConstraintLayout>(R.id.PreferedColor).setOnClickListener {
 
             ColorSheet()
                 .build(requireContext()) {
+
                 title("Selecione uma cor")
                     disableSwitchColorView()
                     colorsInt(
@@ -128,6 +182,8 @@ public class SecondFragment : DialogFragment() {
 
                     colorPicked = color
                     colorTextPrefered.setColorFilter(color, android.graphics.PorterDuff.Mode.MULTIPLY)
+                    myView.findViewById<ImageView>(R.id.categoryIcon).setColorFilter(color, android.graphics.PorterDuff.Mode.MULTIPLY)
+                    myView.findViewById<ImageView>(R.id.dateIcon).setColorFilter(color, android.graphics.PorterDuff.Mode.MULTIPLY)
                     colorButton.setColorFilter(color, android.graphics.PorterDuff.Mode.MULTIPLY)
                 }
             }

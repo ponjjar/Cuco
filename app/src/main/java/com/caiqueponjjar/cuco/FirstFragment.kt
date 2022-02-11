@@ -11,7 +11,6 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
@@ -129,12 +128,17 @@ class FirstFragment : Fragment(R.layout.activity_firstfragment){
                     var title = postSnapshot.child("title").getValue(String::class.java)
                     var itemColor = postSnapshot.child("color").getValue(Int::class.java)
                     var key = postSnapshot.child("key").getValue(String::class.java)
+                    var category = postSnapshot.child("category").getValue(String::class.java)
+                    if(category == "null"){
+                        category = "-1";
+                    }
                                 itemList.add(
                                     Item(
                                         title.toString(),
                                         subtitle.toString(),
                                         itemColor?.toInt() ?: Color.parseColor("#E05F22"),
-                                        key.toString()
+                                        key.toString(),
+                                        getResources().getIdentifier(usuario().getIcons(category?.toInt() ?: 0) , "drawable", requireActivity().packageName)?: R.drawable.roundedconers,
                                     )
                                 )
 
@@ -152,17 +156,12 @@ class FirstFragment : Fragment(R.layout.activity_firstfragment){
                            "Tente anotar algo legal",
                             "Clique no botão laranja",
                             Color.parseColor("#E05F22"),
-                            "CucoMessage"
+                            "CucoMessage",
+                            R.drawable.logo4
                         )
                     )
-                    itemList.add(
-                        Item(
-                            "Esse lugar está vazio",
-                            "Vamos animar isso!",
-                            Color.parseColor("#E05F22"),
-                            "CucoMessage"
-                        )
-                    )
+
+                    listview.adapter = adapter
                 }
                 adapter = ListAdapter( itemList, requireActivity());
                 loadingList.visibility = View.GONE

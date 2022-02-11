@@ -1,10 +1,10 @@
 package com.caiqueponjjar.cuco
 
 import android.app.Activity
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ClipDrawable.VERTICAL
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -14,12 +14,15 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
-import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.contentValuesOf
 import androidx.recyclerview.widget.RecyclerView
 import com.caiqueponjjar.cuco.helper.usuario
+import com.maxkeppeler.sheets.options.DisplayMode
+import com.maxkeppeler.sheets.options.Option
+import com.maxkeppeler.sheets.options.OptionsSheet
 
 
 class ListAdapter(val itemList: ArrayList<Item>, val activity: Activity) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
@@ -30,12 +33,16 @@ class ListAdapter(val itemList: ArrayList<Item>, val activity: Activity) : Recyc
         if (itemList[p1].itemTitle.isNotEmpty() || itemList[p1].itemTitle != null) {
             p0.titleTextView.text = itemList[p1].itemTitle
         p0.subtitleTextView.text = itemList[p1].itemSubtitle
+
     }
         if(itemList[p1].itemColor == Color.parseColor("#00000000")){
             p0.itemColor.visibility = View.GONE
         }
         p0.itemColor.setColorFilter(    //seta a cor do item
             itemList[p1].itemColor, android.graphics.PorterDuff.Mode.SRC_IN
+        )
+        p0.itemCategory.setImageResource(    //seta a categoria do item
+            itemList[p1].itemCategory
         )
 
         if (itemList[p1].itemKey.equals("CucoMessage")) {
@@ -77,6 +84,7 @@ class ListAdapter(val itemList: ArrayList<Item>, val activity: Activity) : Recyc
         var x1: Float? =null
         var x2: Float? =null
 
+            if (!itemList[p1].itemKey.equals("CucoMessage")) {
         p0.itemView.setOnTouchListener { e, motionEvent ->
 
 
@@ -148,38 +156,68 @@ class ListAdapter(val itemList: ArrayList<Item>, val activity: Activity) : Recyc
                 }
             }
             true
-        }
+        }}
 
         p0.itemView.setOnClickListener {
             println("Clicado:" + itemList[p1].itemTitle)
-            val builder = AlertDialog.Builder(activity)
-            builder.setTitle(itemList[p1].itemTitle)
-            builder.setMessage(itemList[p1].itemSubtitle)
-
-            builder.setPositiveButton("voltar") { dialog, which ->
-                //Toast.makeText(applicationContext,"continuar",Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
-            builder.setNegativeButton("deletar") { dialog, which ->
-                //Toast.makeText(applicationContext,"continuar",Toast.LENGTH_SHORT).show()
-                var anim: Animation = AnimationUtils.loadAnimation(
-                    activity, android.R.anim.slide_out_right
+            // val builder = AlertDialog.Builder(activity)
+            //   builder.setTitle(itemList[p1].itemTitle)
+            //   builder.setMessage(itemList[p1].itemSubtitle)
+            OptionsSheet().show(activity) {
+                title(itemList[p1].itemTitle)
+                //displayMode(DisplayMode.GRID_VERTICAL)
+                preventIconTint(false)
+                multipleChoices(false)
+                with(
+                    Option(android.R.drawable.ic_menu_share, "Compartilhar"),
+                    Option(R.drawable.iconbin, "Deletar"),
+                    // Option(R.drawable.iconvideogame, "Editar"),
                 )
-                anim.duration =  500
+                displayButtons(false)
+                onNegative("Voltar") {
 
-                if(animating == false) {
-                    p0.itemView.startAnimation(anim)
                 }
-                anim.setAnimationListener(object : Animation.AnimationListener {
-                    override fun onAnimationStart(arg0: Animation) {
-                        animating = true
+                onPositive { index: Int, option: Option ->
+                    // Handle selected option
+                    if (index == 0) {
+
+                        val shareIntent = Intent()
+                        shareIntent.action = Intent.ACTION_SEND
+                        shareIntent.type = "text/plain"
+                        shareIntent.putExtra(
+                            Intent.EXTRA_TEXT,
+                            if(!itemList[p1].itemSubtitle.isEmpty()) itemList[p1].itemTitle  + ".\n" + itemList[p1].itemSubtitle else itemList[p1].itemTitle
+                        )
+                        activity?.startActivity(Intent.createChooser(shareIntent, "Compartilhar"))
+                    } else if (index == 1) {
+                        var anim: Animation = AnimationUtils.loadAnimation(
+                            activity, android.R.anim.fade_out
+                        )
+                        anim.duration = 100
+
+                        if (animating == false) {
+                            p0.itemView.startAnimation(anim)
+                        }
+                        var activity:Activity = activity as Activity
+                        anim.setAnimationListener( object : Animation.AnimationListener {
+                            override fun onAnimationStart(arg0: Animation) {
+                                animating = true
+                            }
+
+                            override fun onAnimationRepeat(arg0: Animation) {}
+                            override fun onAnimationEnd(arg0: Animation) {
+                                usuario().deleteData(activity, itemList[p1].itemKey)
+                                animating = false
+                            }
+                        })
                     }
-                    override fun onAnimationRepeat(arg0: Animation) {}
-                    override fun onAnimationEnd(arg0: Animation) {
-                        animating = false
-                        usuario().deleteData(activity, itemList[p1].itemKey)
-                    }
-                })
+                }
+            }
+        }
+        }
+           /* builder.setNegativeButton("deletar") { dialog, which ->
+                //Toast.makeText(applicationContext,"continuar",Toast.LENGTH_SHORT).show()
+
 
 
             }
@@ -217,7 +255,7 @@ class ListAdapter(val itemList: ArrayList<Item>, val activity: Activity) : Recyc
              }
             fragment.arguments = bundle
             parentFragmentManager.beginTransaction().add(R.id.fragment_container_view, fragment).addToBackStack(null).commit()*/
-        }
+        }*/
         //p0?.txtTitle?.text = androidVersionList[p1].codeName
         //p0?.txtContent?.text = "Version : ${androidVersionList[p1].versionName}, Api Name : ${androidVersionList[p1].apiLevel}"
         //p0?.image.setImageResource(androidVersionList[p1].imgResId!!)
@@ -249,6 +287,8 @@ class ListAdapter(val itemList: ArrayList<Item>, val activity: Activity) : Recyc
          var subtitleTextView : TextView = itemView.findViewById<TextView>(R.id.subtitle_textview)
          var cardView : CardView = itemView.findViewById(R.id.card_pertanyaan)
          var itemColor : ImageView = itemView.findViewById(R.id.colorItem)
+
+        var itemCategory : ImageView = itemView.findViewById(R.id.category_image)
             var animating : Boolean = false
         //titleTextView.text = itemList[position].itemTitle
         //authorTextView.text = itemList[position].itemSubtitle
