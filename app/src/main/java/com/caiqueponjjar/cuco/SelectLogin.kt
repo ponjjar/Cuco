@@ -31,8 +31,8 @@ class SelectLogin : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_select_login)
         val currentUser = usuario().getUser()
-        if(currentUser != null || usuario().getAccount(this) != null){
-
+        if((currentUser != null || usuario().getAccount(this) != null) && ( usuario().getUsername(this) != null && usuario().getUsername(this)!!.trim() != "")){
+            println("Usuario logado:" + usuario().getUsername(this))
             startActivity(Intent(this, MainActivity::class.java))
         }
 
@@ -102,8 +102,8 @@ class SelectLogin : AppCompatActivity() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = usuario().getUser()
-        if(currentUser != null || usuario().getAccount(this) != null){
-            
+        if((currentUser != null || usuario().getAccount(this) != null) && ( usuario().getUsername(this) != null && usuario().getUsername(this)!!.trim() != "")){
+            println("Usuario logado:" + usuario().getUsername(this))
             startActivity(Intent(this, MainActivity::class.java))
         }
     }

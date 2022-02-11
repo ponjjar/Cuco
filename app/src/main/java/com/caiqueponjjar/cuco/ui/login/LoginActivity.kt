@@ -13,6 +13,7 @@ import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
 import android.widget.*
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.caiqueponjjar.cuco.FirstFragment
 import com.caiqueponjjar.cuco.MainActivity
@@ -27,6 +28,7 @@ import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.SignInMethodQueryResult
 
 import androidx.annotation.NonNull
+import com.caiqueponjjar.cuco.SelectLogin
 import com.caiqueponjjar.cuco.helper.usuario
 
 import com.google.android.gms.tasks.OnCompleteListener
@@ -42,6 +44,16 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        // This callback will only be called when MyFragment is at least Started.
+        // This callback will only be called when MyFragment is at least Started.
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true /* enabled by default */) {
+                override fun handleOnBackPressed() {
+                    // Handle the back button event
+                    startActivity(Intent(this@LoginActivity, SelectLogin::class.java))
+                }
+            }
+        this.onBackPressedDispatcher.addCallback(this, callback)
         val loginBtn = findViewById<Button>(R.id.login)
         loginBtn.setOnClickListener {
             email = findViewById<EditText>(R.id.email).text.toString()

@@ -10,6 +10,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,6 +41,15 @@ class FirstFragment : Fragment(R.layout.activity_firstfragment){
         var anim: Animation = AnimationUtils.loadAnimation(
             activity, R.anim.floating
         )
+        // This callback will only be called when MyFragment is at least Started.
+        // This callback will only be called when MyFragment is at least Started.
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true /* enabled by default */) {
+                override fun handleOnBackPressed() {
+                    // Handle the back button event
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
         anim.repeatCount = Animation.INFINITE
         loadingImage.startAnimation(anim)
         var EyesBird = view.findViewById<TextView>(R.id.BirdEyes)

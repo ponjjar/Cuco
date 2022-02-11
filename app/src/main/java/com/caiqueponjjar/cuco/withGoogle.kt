@@ -27,6 +27,7 @@ import android.R
 import android.os.PersistableBundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.caiqueponjjar.cuco.helper.usuario
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -50,6 +51,15 @@ class withGoogle : AppCompatActivity() {
         setContentView(com.caiqueponjjar.cuco.R.layout.activity_with_google)
         configureGoogleSignIn();
         doSignInSignOut()
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true /* enabled by default */) {
+                override fun handleOnBackPressed() {
+                    // Handle the back button event
+                    startActivity(Intent(this@withGoogle, SelectLogin::class.java))
+                    finish()
+                }
+            }
+        this.onBackPressedDispatcher.addCallback(this, callback)
     }
     private fun configureGoogleSignIn() {
         // Configure sign-in to request the user's ID, email address, and basic
