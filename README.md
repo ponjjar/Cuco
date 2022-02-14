@@ -4,7 +4,7 @@
 <img src="https://user-images.githubusercontent.com/58194653/153776869-b01a45b3-738b-4e79-a480-45e36affc5aa.png" alt="Cuco" width="50%"/>
 
 </p>
-<h3 align="center"> Agenda pessoal com interface dinâmica programada em Kotlin.</h3>
+<h3 align="center"> Agenda de tarefas com interface dinâmica e animada.</h3>
 
 <p align="center">
 
@@ -26,10 +26,13 @@
 </p>
 <h2 align="center"> Descrição </h2>
 <p> 
-Cuco é um aplicativo de anotações criado para registrar tarefas próprias, entre amigos e em grupos. Também é possivel registrar idéias ao longo do dia com icones e cores personalizadas. O aplicativo ajuda na organização de anotações e tarefas do dia-a-dia de maneira facilitada, armazenando-as na nuvem. 
+Cuco é um aplicativo de anotações criado para registrar tarefas próprias, entre amigos e em grupos. Também é possível registrar idéias ao longo do dia com ícones e cores personalizadas. O aplicativo ajuda na organização de anotações e tarefas do dia-a-dia de maneira facilitada, armazenando-as na nuvem. 
 </p>
 <p align="center">
 <i>Organize ideias utilizando o Cuco.</i> </p>
+
+
+<img src="https://user-images.githubusercontent.com/58194653/153785417-79ad31a6-9942-4eda-b095-b326ad0380e8.png" width="100%"/>
 
 <h2 align="center"> Ferramentas utilizadas 🚀 </h2>
 <p align="center">
@@ -52,4 +55,9 @@ $ git clone https://github.com/Caique-P/Cuco
 
 # Abra o projeto no Android Studio e divirta-se
 ```
+
+
+<p align="center">
+<i>Em breve na play store.</i> </p>
  
+
