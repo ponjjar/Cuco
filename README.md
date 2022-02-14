@@ -6,4 +6,50 @@
 </p>
 <h3 align="center"> Agenda pessoal com interface dinâmica programada em Kotlin.</h3>
 
-Desenvolvida durante os estudos de kotlin 
+<p align="center">
+
+<img src="https://img.shields.io/badge/Made by-Caique Ponjjar-blue.svg" />
+
+<img src="https://img.shields.io/github/followers/Caique-P?label=Seguir&style=social" />
+
+<img src="https://img.shields.io/github/last-commit/Caique-P/Cuco?label=Last%20update" />
+
+<img src="https://img.shields.io/badge/-Kotlin-200259?style=flat&logo=Kotlin&logoColor=darkpurple&link=https://kotlinlang.org/" />
+
+<img src="https://img.shields.io/github/stars/Caique-P/Cuco?style=social"/>
+
+<img src="https://img.shields.io/github/issues/Caique-P/Cuco?style=flat&label=Issues"/>
+
+<img src="https://img.shields.io/github/repo-size/Caique-P/Cuco?style=flat&label=Size"/>
+
+<img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" />
+</p>
+<h2 align="center"> Descrição </h2>
+<p> 
+Cuco é um aplicativo de anotações criado para registrar tarefas próprias, entre amigos e em grupos. Também é possivel registrar idéias ao longo do dia com icones e cores personalizadas. O aplicativo ajuda na organização de anotações e tarefas do dia-a-dia de maneira facilitada, armazenando-as na nuvem. 
+</p>
+<p align="center">
+<i>Organize ideias utilizando o Cuco.</i> </p>
+
+<h2 align="center"> Ferramentas utilizadas 🚀 </h2>
+<p align="center">
+  <img src="https://img.shields.io/badge/Android Studio-5ea832?style=for-the-badge&logo=Android&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Firebase-F29D0C?style=for-the-badge&logo=firebase&logoColor=white"/></p>
+<p align="center">
+ <a href="https://github.com/maxkeppeler/sheets">
+<img src="https://img.shields.io/badge/SheetsApi-white?style=social&logo=github"/>
+</a>
+ <a href="https://github.com/maxkeppeler/sheets">
+<img src="https://img.shields.io/badge/Github Copilot-white?style=social&logo=github&logoColor=6687ff"/>
+</a>
+
+<h2 align="center"> Na sua maquina :computer:</h2>
+
+```
+# Clone o repositório
+$ git clone https://github.com/Caique-P/Cuco
+
+# Abra o projeto no Android Studio e divirta-se
+```
+ 
