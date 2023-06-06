@@ -24,6 +24,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import android.R
+import android.os.Handler
 import android.os.PersistableBundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.View
@@ -113,10 +114,13 @@ class withGoogle : AppCompatActivity() {
             Log.e(TAG, "signInResult:failed code=" + e.getStatusCode());
 
             //show toast
-            Toast.makeText(this, "Failed to do Sign In : " + e.getStatusCode(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Falha na conexão, tente novamente mais tarde", Toast.LENGTH_SHORT).show();
 
             //update Ui for this
-            getProfileInformation(null);
+            Handler().postDelayed({
+
+                getProfileInformation(null);
+            }, 10000)
         }
     }
     override fun onStart() {

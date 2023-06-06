@@ -52,7 +52,8 @@
             android:hint="@string/prompt_email"
             android:inputType="textEmailAddress"
             android:padding="8dp"
-            android:selectAllOnFocus="true" />
+            android:selectAllOnFocus="true"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/password"
@@ -66,20 +67,22 @@
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:padding="8dp"
-            android:selectAllOnFocus="true" />
+            android:selectAllOnFocus="true"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
             android:background="@drawable/roundedconers"
             android:backgroundTint="#FFD29C"
             android:enabled="true"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            android:text="Entrar" />
+            android:text="Entrar"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -104,7 +107,7 @@
             android:gravity="center_horizontal"
             android:text="Prazer, sou o Cuco. "
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/Who"
@@ -114,7 +117,7 @@
             android:gravity="center_horizontal"
             android:text="Como você se chama?"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/username"
@@ -126,7 +129,8 @@
             android:hint="Nome de usuário"
             android:inputType="textEmailAddress"
             android:padding="8dp"
-            android:selectAllOnFocus="true" />
+            android:selectAllOnFocus="true"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/Cadastrar"
@@ -139,7 +143,8 @@
             android:enabled="true"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:text="Vamos nessa!" />
+            android:text="Vamos nessa!"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

@@ -39,7 +39,7 @@
             android:layout_marginStart="8dp"
             android:ems="10"
             android:hint="@string/titulo"
-            android:inputType="textPersonName"
+            android:inputType="text"
             android:minHeight="48dp" />
 
         <com.google.android.material.textfield.TextInputEditText
@@ -50,7 +50,7 @@
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:hint="@string/subtitulo"
-            android:inputType="textPersonName"
+            android:inputType="text|textLongMessage|textMultiLine"
             android:minHeight="48dp" />
 
         <LinearLayout
@@ -94,7 +94,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/colorpickericon"
-                    app:tint="#E05F22" />
+                    app:tint="#DDAD00" />
 
                 <TextView
                     android:id="@+id/textView"
@@ -248,7 +248,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/roundedconers"
                 android:text="Adicionar"
-                app:backgroundTint="#005CDD"></com.google.android.material.button.MaterialButton>
+                app:backgroundTint="@color/orange"></com.google.android.material.button.MaterialButton>
 
         </LinearLayout>
 

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "846495494117",
+    "firebase_url": "https://cuco-agenda-default-rtdb.firebaseio.com",
     "project_id": "cuco-agenda",
     "storage_bucket": "cuco-agenda.appspot.com"
   },
