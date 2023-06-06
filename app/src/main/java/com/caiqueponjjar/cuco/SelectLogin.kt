@@ -27,6 +27,7 @@ import androidx.fragment.app.FragmentTransaction
 class SelectLogin : AppCompatActivity() {
 
     private lateinit var videoview : VideoView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_select_login)
@@ -45,15 +46,23 @@ class SelectLogin : AppCompatActivity() {
         if(!preferences.getBoolean("firstTime",false)) {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Bem vindo!")
-            builder.setMessage("Obrigado por baixar =D")
-            builder.setPositiveButton("Continuar") { dialog, which ->
+            builder.setMessage("Aceitar os termos de uso e privacidade?")
+
+            builder.setNeutralButton("Ver termos") {    dialog, which ->
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://superponjjar.blogspot.com/2023/06/terms-conditions-cuco.html"))
+                startActivity(browserIntent)
+                finish()
+
+
+            }
+            builder.setPositiveButton("Aceitar") { dialog, which ->
                 //Toast.makeText(applicationContext,"continuar",Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
+                preferences.edit().putBoolean("firstTime", true).apply()
             }
             val dialog: AlertDialog = builder.create()
-//            dialog.show()
+            dialog.show()
 
-            preferences.edit().putBoolean("firstTime", true).apply()
         }
 
         // (getContext() as Activity).windowManager.defaultDisplay.getRealMetrics(metrics)
