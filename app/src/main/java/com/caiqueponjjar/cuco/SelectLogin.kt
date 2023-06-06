@@ -51,7 +51,7 @@ class SelectLogin : AppCompatActivity() {
                 dialog.dismiss()
             }
             val dialog: AlertDialog = builder.create()
-            dialog.show()
+//            dialog.show()
 
             preferences.edit().putBoolean("firstTime", true).apply()
         }
